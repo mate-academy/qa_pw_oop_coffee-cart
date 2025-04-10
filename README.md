@@ -2,7 +2,7 @@
 
 ## Description
 
-In this task you will practice to build the page classes hierarhy and enable the oop principles utulization.  
+In this task, you will practice building the page classes hierarchy and apply the OOP principles.  
 
 ## Preparation
 
@@ -71,7 +71,7 @@ export class BasePage {
 ```javascript
 ... this.step(`Open ${this._pageName()} page`, ...)
 ```
-11. Assiпт value to the `this._url = ` in costructor for the `MenuPage` and `CartPage` classes.
+11. Assign value to `this._url = ` in constructor for the `MenuPage` and `CartPage` classes.
 12. Remove the `open()` methods from `MenuPage` and `CartPage` classes.
 13. Run all the tests to make sure nothing is broken.
 14. Move the `reload()` method from the `MenuPage` and `CartPage` classes to the `BasePage` class. 
