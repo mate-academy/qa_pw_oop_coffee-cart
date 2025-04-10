@@ -42,7 +42,7 @@ export class CartPage {
     });
   }
 
-  async waitForURL() {
+  async waitForLoading() {
     await step(`Wait for Cart page to open`, async () => {
       await this.page.waitForURL('/cart');
     });
