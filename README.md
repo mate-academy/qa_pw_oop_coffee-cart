@@ -75,6 +75,7 @@ export class BasePage {
 12. Remove the `open()` methods from `MenuPage` and `CartPage` classes.
 13. Run all the tests to make sure nothing is broken.
 14. Move the `reload()` method from the `MenuPage` and `CartPage` classes to the `BasePage` class. 
+14. Move the `waitForURL()` method from the `CartPage` class to the `BasePage` class. 
 15. Run all the tests to make sure nothing is broken.
 
 ## Task Reporting
