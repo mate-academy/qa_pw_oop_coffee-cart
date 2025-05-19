@@ -69,7 +69,7 @@ export class BasePage {
 ```
 * 10.5 Update the `open()` method step to incorporate a page name:
 ```javascript
-... this.step(`Open ${this._pageName()} page`, ...)
+... step(`Open ${this._pageName()} page`, ...)
 ```
 11. Assign value to `this._url = ` in constructor for the `MenuPage` and `CartPage` classes.
 12. Remove the `open()` methods from `MenuPage` and `CartPage` classes.
