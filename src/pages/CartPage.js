@@ -38,18 +38,6 @@ export class CartPage extends BasePage {
     return this.page.getByLabel(`Add one ${name}`).nth(1);
   }
 
-  async waitForLoading() {
-    await step(`Wait for Cart page to open`, async () => {
-      await this.page.waitForURL('/cart');
-    });
-  }
-
-  async reload() {
-    await step(`Reload the Cart Page`, async () => {
-      await this.page.reload();
-    });
-  }
-
   async clickCoffeeListItemRemoveAllButton(name) {
     await step(`Click 'Remove All' button for ${name} list item`, async () => {
       await this.coffeeListItemRemoveAllButton(name).click();

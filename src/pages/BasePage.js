@@ -20,8 +20,20 @@ export class BasePage {
   }
 
   async open() {
-    await this.step(`Open ${this._pageName()} page`, async () => {
+    await step(`Open ${this._pageName()} page`, async () => {
       await this.page.goto(this.url());
+    });
+  }
+
+  async reload() {
+    await step(`Reload the ${this._pageName()}`, async () => {
+      await this.page.reload();
+    });
+  }
+
+  async waitForLoading() {
+    await step(`Wait for ${this._pageName()} to open`, async () => {
+      await this.page.waitForURL(this.url());
     });
   }
 }

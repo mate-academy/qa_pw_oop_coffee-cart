@@ -25,12 +25,6 @@ export class MenuPage extends BasePage {
     return this.page.getByRole('listitem').filter({ has: coffeeCup });
   }
 
-  async reload() {
-    await step(`Reload the Menu Page`, async () => {
-      await this.page.reload();
-    });
-  }
-
   async clickCoffeeCup(coffeeName) {
     await step(`Click ${coffeeName} cup`, async () => {
       await this.coffeeCupLocator(coffeeName).click();
