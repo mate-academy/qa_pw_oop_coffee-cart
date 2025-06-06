@@ -1,5 +1,5 @@
-const { expect, step } = require('@playwright/test');
 import { BasePage } from '../BasePage';
+import { expect, step } from '@playwright/test';
 
 export class MenuPage extends BasePage {
   constructor(page) {

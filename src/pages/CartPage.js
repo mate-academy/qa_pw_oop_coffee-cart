@@ -1,4 +1,4 @@
-const { expect, step } = require('@playwright/test');
+import { step, expect } from '@playwright/test';
 import { BasePage } from '../BasePage';
 
 export class CartPage extends BasePage {
