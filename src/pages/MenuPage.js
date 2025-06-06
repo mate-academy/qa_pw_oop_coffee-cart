@@ -1,4 +1,4 @@
-import { BasePage } from '../BasePage';
+import { BasePage } from './BasePage';
 import { expect, step } from '@playwright/test';
 
 export class MenuPage extends BasePage {
