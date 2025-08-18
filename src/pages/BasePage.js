@@ -20,19 +20,19 @@ export class BasePage {
   }
 
   async open() {
-    await step(`Open ${this._pageName()} page`, async () => {
+    await step(`Open ${this._pageName()} Page`, async () => {
       await this.page.goto(this.url());
     });
   }
 
   async waitForLoading() {
-    await step(`Wait for ${this._pageName()} page to open`, async () => {
+    await step(`Wait for ${this._pageName()} Page to open`, async () => {
       await this.page.waitForURL(this.url());
     });
   }
 
   async reload() {
-    await step(`Reload the Cart Page`, async () => {
+    await step(`Reload the ${this._pageName()} Page`, async () => {
       await this.page.reload();
     });
   }
