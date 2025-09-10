@@ -1,5 +1,6 @@
-const { expect, step } = require('@playwright/test');
-import { BasePage } from './BasePage';
+// src/pages/MenuPage.js
+import { expect } from '@playwright/test';
+import { BasePage } from './BasePage.js';
 
 export class MenuPage extends BasePage {
   constructor(page) {
@@ -25,46 +26,44 @@ export class MenuPage extends BasePage {
     return this.page.getByRole('listitem').filter({ has: coffeeCup });
   }
 
-  // open() and reload() moved to BasePage
-
   async clickCoffeeCup(coffeeName) {
-    await step(`Click ${coffeeName} cup`, async () => {
+    await this.step(`Click ${coffeeName} cup`, async () => {
       await this.coffeeCupLocator(coffeeName).click();
     });
   }
 
   async clickCartLink() {
-    await step(`Click 'Cart' link`, async () => {
+    await this.step(`Click 'Cart' link`, async () => {
       await this.cartLink.click();
     });
   }
 
   async clickYesPromoButton() {
-    await step(`Click 'Yes' promo button`, async () => {
+    await this.step(`Click 'Yes' promo button`, async () => {
       await this.yesPromoButton.click();
     });
   }
 
   async clickNoPromoButton() {
-    await step(`Click 'No' promo button`, async () => {
+    await this.step(`Click 'No' promo button`, async () => {
       await this.noPromoButton.click();
     });
   }
 
   async assertTotalCheckoutContainsValue(value) {
-    await step(`Assert Total checkout has value: ${value}`, async () => {
+    await this.step(`Assert Total checkout has value: ${value}`, async () => {
       await expect(this.totalCheckout).toContainText(value);
     });
   }
 
   async assertCoffeeCupCostHasValue(coffee, value) {
-    await step(`Assert ${coffee} cup cost has value: ${value}`, async () => {
+    await this.step(`Assert ${coffee} cup cost has value: ${value}`, async () => {
       await expect(this.coffeeCupCostLocator(coffee)).toContainText(value);
     });
   }
 
   async assertPromoMessageIsVisible() {
-    await step(`Assert promo message is visible`, async () => {
+    await this.step(`Assert promo message is visible`, async () => {
       await expect(this.promoMessage).toBeVisible();
     });
   }

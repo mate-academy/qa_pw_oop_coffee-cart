@@ -1,4 +1,5 @@
-const { step } = require('@playwright/test');
+// src/pages/BasePage.js
+import { step as pwStep } from '@playwright/test';
 
 export class BasePage {
   /** @protected */ _url;
@@ -8,14 +9,13 @@ export class BasePage {
   }
 
   async step(title, body) {
-    await step(title, body);
+    // keep PW's step behind an instance method
+    await pwStep(title, body);
   }
 
   url() {
-    if (this._url) {
-      return this._url;
-    }
-    throw Error(`The property '_url' must be implemented`);
+    if (this._url) return this._url;
+    throw new Error(`The property '_url' must be implemented`);
   }
 
   _pageName() {
