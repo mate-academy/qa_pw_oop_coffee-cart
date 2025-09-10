@@ -11,7 +11,12 @@ export function parseTestTreeHierarchy(fileName, logger) {
     capitalize(camelCaseToPhrase(attribute)),
   );
 
-  if (attributes[2].includes('.spec.js')) {
+  // Безпечна перевірка
+  if (
+    attributes.length > 2 &&
+    typeof attributes[2] === 'string' &&
+    attributes[2].includes('.spec.js')
+  ) {
     attributes = attributes.slice(0, 2);
   }
 

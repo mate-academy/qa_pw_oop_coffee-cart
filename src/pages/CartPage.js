@@ -1,10 +1,9 @@
 const { expect, step } = require('@playwright/test');
 import { BasePage } from './BasePage';
-
 export class CartPage extends BasePage {
   constructor(page) {
     super(page);
-    this._url = 'https://coffee-cart.app/cart';
+    this._url = '/cart';
     this.cartListLocator = page.getByRole('list').nth(1);
     this.notCoffeeMessage = page.getByText('No coffee, go add some.');
     this.totalCheckout = page.getByTestId('checkout');
@@ -36,24 +35,6 @@ export class CartPage extends BasePage {
 
   coffeeListItemAddOneButton(name) {
     return this.page.getByLabel(`Add one ${name}`).nth(1);
-  }
-
-  // async open() {
-  //   await step(`Open the Cart Page`, async () => {
-  //     await this.page.goto('https://coffee-cart.app/cart');
-  //   });
-  // }
-
-  async waitForLoading() {
-    await step(`Wait for Cart page to open`, async () => {
-      await this.page.waitForURL('/cart');
-    });
-  }
-
-  async reload() {
-    await step(`Reload the Cart Page`, async () => {
-      await this.page.reload();
-    });
   }
 
   async clickCoffeeListItemRemoveAllButton(name) {

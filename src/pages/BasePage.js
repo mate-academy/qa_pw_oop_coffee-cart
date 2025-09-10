@@ -1,4 +1,5 @@
-import { step } from '@playwright/test';
+const { step } = require('@playwright/test');
+
 export class BasePage {
   _url;
 
@@ -19,8 +20,20 @@ export class BasePage {
   }
 
   async open() {
-    await step(`Open ${this._pageName()} page`, async () => {
+    await step(`Open ${this._pageName()} Page`, async () => {
       await this.page.goto(this.url());
+    });
+  }
+
+  async waitForLoading() {
+    await step(`Wait for ${this._pageName()} Page to open`, async () => {
+      await this.page.waitForURL(this.url());
+    });
+  }
+
+  async reload() {
+    await step(`Reload the ${this._pageName()} Page`, async () => {
+      await this.page.reload();
     });
   }
 }
