@@ -1,12 +1,15 @@
 const { expect, step } = require('@playwright/test');
+import { BasePage } from './BasePage';
 
-export class MenuPage {
+export class MenuPage extends BasePage {
   constructor(page) {
-    this.page = page;
+    super(page);
+    this._url = '/';
+
     this.cartLink = page.getByLabel('Cart page');
     this.totalCheckout = page.getByTestId('checkout');
     this.promoMessage = page.getByText(
-      "It's your lucky day! Get an extra cup of Mocha for $4.",
+      "It's your lucky day! Get an extra cup of Mocha for $4."
     );
     this.yesPromoButton = page.getByRole('button', { name: 'Yes, of course!' });
     this.noPromoButton = page.getByRole('button', { name: "Nah, I'll skip." });
@@ -14,7 +17,6 @@ export class MenuPage {
 
   coffeeCupLocator(coffeeName) {
     const testId = coffeeName.replace(' ', '_');
-
     return this.page.getByTestId(testId);
   }
 
@@ -23,17 +25,7 @@ export class MenuPage {
     return this.page.getByRole('listitem').filter({ has: coffeeCup });
   }
 
-  async open() {
-    await step('Open the Menu Page', async () => {
-      await this.page.goto('/');
-    });
-  }
-
-  async reload() {
-    await step(`Reload the Menu Page`, async () => {
-      await this.page.reload();
-    });
-  }
+  // open() and reload() moved to BasePage
 
   async clickCoffeeCup(coffeeName) {
     await step(`Click ${coffeeName} cup`, async () => {
@@ -72,7 +64,7 @@ export class MenuPage {
   }
 
   async assertPromoMessageIsVisible() {
-    await step(`Click 'No' promo button`, async () => {
+    await step(`Assert promo message is visible`, async () => {
       await expect(this.promoMessage).toBeVisible();
     });
   }
