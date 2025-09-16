@@ -5,12 +5,16 @@ import { Logger } from '../../src/common/logger/Logger';
 import * as allure from 'allure-js-commons';
 import { parseTestTreeHierarchy } from '../../src/common/helpers/allureHelpers';
 
-export const test = base.extend<{
-  cartPage;
-  menuPage;
-  logger;
-  addAllureTestHierarchy;
-}>({
+export const test = base.extend<
+  {
+    cartPage;
+    menuPage;
+    addAllureTestHierarchy;
+  },
+  {
+    logger;
+  }
+>({
   cartPage: async ({ page }, use) => {
     const cartPage = new CartPage(page);
 
