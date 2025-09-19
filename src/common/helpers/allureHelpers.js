@@ -1,21 +1,30 @@
-import { camelCaseToPhrase, capitalize } from './stringHelpers';
+// src/common/helpers/allureHelpers.js
+import { camelCaseToPhrase, capitalize } from './stringHelpers.js';
 
 export function parseTestTreeHierarchy(fileName, logger) {
-  const testFolder = 'tests/';
+  if (!fileName) return [];
 
-  const attributesCamelCase = fileName
-    .substring(fileName.indexOf(testFolder) + testFolder.length)
-    .split('/');
+  // normalize separators for Windows/*nix
+  const normalized = String(fileName).replace(/\\/g, '/');
 
-  let attributes = attributesCamelCase.map(attribute =>
-    capitalize(camelCaseToPhrase(attribute)),
-  );
+  // robustly take the part after "/tests/"
+  const testsMatch = /\/tests(?:\/|$)/i.exec(normalized);
+  const afterTests = testsMatch
+    ? normalized.slice(testsMatch.index + testsMatch[0].length)
+    : normalized;
 
-  if (attributes[2].includes('.spec.js')) {
-    attributes = attributes.slice(0, 2);
+  // split into raw path parts
+  let parts = afterTests.split('/').filter(Boolean);
+
+  // drop spec/test file if present — use the raw last segment, not humanized
+  const lastSegment = parts[parts.length - 1] || '';
+  if (/\.(spec|test)\.(t|j)sx?$/i.test(lastSegment)) {
+    parts = parts.slice(0, -1);
   }
 
-  logger.debug(`Parsed test hierarchy: ${JSON.stringify(attributes)}`);
+  // now humanize remaining parts
+  const attributes = parts.map((p) => capitalize(camelCaseToPhrase(p)));
 
+  logger?.debug?.(`Parsed test hierarchy: ${JSON.stringify(attributes)}`);
   return attributes;
 }
