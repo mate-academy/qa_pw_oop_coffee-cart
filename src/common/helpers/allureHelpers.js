@@ -11,7 +11,8 @@ export function parseTestTreeHierarchy(fileName, logger) {
     capitalize(camelCaseToPhrase(attribute)),
   );
 
-  if (attributes[2].includes('.spec.js')) {
+  // Fix: Prevent crash when attributes[2] is undefined
+  if (attributes.length > 2 && attributes[2].includes('.spec.js')) {
     attributes = attributes.slice(0, 2);
   }
 
