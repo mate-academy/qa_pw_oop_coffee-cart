@@ -1,8 +1,10 @@
+import { BasePage } from './BasePage';
+
 const { expect, step } = require('@playwright/test');
 
-export class CartPage {
+export class CartPage extends BasePage {
   constructor(page) {
-    this.page = page;
+    super(page);
     this.cartListLocator = page.getByRole('list').nth(1);
     this.notCoffeeMessage = page.getByText('No coffee, go add some.');
     this.totalCheckout = page.getByTestId('checkout');
