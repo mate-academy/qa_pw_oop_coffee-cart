@@ -21,7 +21,7 @@ export class BasePage {
   }
 
   async reload() {
-    await step(`Reload the Menu Page`, async () => {
+    await step(`Reload the ${this._pageName()} Page`, async () => {
       await this.page.reload();
     });
   }
@@ -31,8 +31,8 @@ export class BasePage {
   }
 
   async waitForLoading() {
-    await step(`Wait for Cart page to open`, async () => {
-      await this.page.waitForURL('/cart');
+    await step(`Wait for ${this._pageName()} page to open`, async () => {
+      await this.page.waitForURL(this._url);
     });
   }
 }
