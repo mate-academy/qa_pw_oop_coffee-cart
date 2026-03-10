@@ -8,7 +8,7 @@ export class BasePage {
     }
 
     async step(title, stepToRun) {
-        return await test.step(title, stepToRun, this.userId);
+        return await test.step(title, stepToRun);
     }
 
     url() {
