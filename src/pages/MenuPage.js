@@ -1,8 +1,9 @@
 const { expect, step } = require('@playwright/test');
+import { BasePage } from './BasePage';
 
-export class MenuPage {
+export class MenuPage extends BasePage{
   constructor(page) {
-    this.page = page;
+    super(page);
     this.cartLink = page.getByLabel('Cart page');
     this.totalCheckout = page.getByTestId('checkout');
     this.promoMessage = page.getByText(
@@ -10,6 +11,7 @@ export class MenuPage {
     );
     this.yesPromoButton = page.getByRole('button', { name: 'Yes, of course!' });
     this.noPromoButton = page.getByRole('button', { name: "Nah, I'll skip." });
+    this._url = '/';
   }
 
   coffeeCupLocator(coffeeName) {
@@ -21,18 +23,6 @@ export class MenuPage {
   coffeeCupCostLocator(coffeeName) {
     const coffeeCup = this.coffeeCupLocator(coffeeName);
     return this.page.getByRole('listitem').filter({ has: coffeeCup });
-  }
-
-  async open() {
-    await step('Open the Menu Page', async () => {
-      await this.page.goto('/');
-    });
-  }
-
-  async reload() {
-    await step(`Reload the Menu Page`, async () => {
-      await this.page.reload();
-    });
   }
 
   async clickCoffeeCup(coffeeName) {
