@@ -7,6 +7,8 @@
     this.page = page;
 
   }
+
+
   url() {
     if (this._url) {
       return this._url;
@@ -16,9 +18,9 @@
 
   }
   async step(name, action) {
-  console.log(`Step: ${name}`);
-  await action();
-}
+    console.log(`Step: ${name}`);
+    await action();
+  }
 
   
    async open() {
@@ -44,6 +46,8 @@
     }
 
 
+
+    
  
 
 }

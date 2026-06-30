@@ -1,4 +1,4 @@
-const { expect } = require('@playwright/test');
+import { expect } from '@playwright/test';
 import {BasePage} from './BasePage';
 
 export class MenuPage extends BasePage {
@@ -68,20 +68,6 @@ export class MenuPage extends BasePage {
     });
   }
 
-  coffeeListItemTotalCostCell(name) {
-    return this.coffeeItem(name).locator('div').nth(3);
-  }
 
-  coffeeListItemRemoveAllButton(name) {
-    return this.page.getByLabel(`Remove all ${name}`);
-  }
-
-  coffeeListItemRemoveOneButton(name) {
-    return this.page.getByLabel(`Remove one ${name}`).nth(1);
-  }
-
-  coffeeListItemAddOneButton(name) {
-    return this.page.getByLabel(`Add one ${name}`).nth(1);
-  }
 
 }
