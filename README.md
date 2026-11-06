@@ -27,7 +27,7 @@ In this task, you will practice building the page classes hierarchy and apply th
 5. Import `BasePage` class to it.
 6. Inherit the `BasePage` by the `CartPage`:
 ```javascript
-export class CartPage extend BasePage {...}
+export class CartPage extends BasePage {...}
 ``` 
 7. Update `CartPage` constructor method to initialize parent class constructor:
 * 7.1 Remove the line `this.page = page;` - this will now be done in the `BasePage` class. 
