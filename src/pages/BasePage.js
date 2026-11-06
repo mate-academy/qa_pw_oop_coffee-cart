@@ -33,7 +33,7 @@ export class BasePage {
 
   
   async waitForLoading() {
-    await step(`Wait for Cart page to open`, async () => {
+    await step(`Wait for ${this._pageName()} page to open`, async () => {
       await this.page.waitForURL(this.url());
     });
   }
